@@ -4,15 +4,18 @@ const initialState = {
   friendsById: [
     {
       name: 'Theodore Roosevelt',
-      starred: true
+      starred: true,
+      gender:'male'
     },
     {
       name: 'Abraham Lincoln',
-      starred: false
+      starred: false,
+      gender:'male'
     },
     {
       name: 'George Washington',
-      starred: false
+      starred: false,
+      gender:'male'
     }
   ]
 };
@@ -25,7 +28,8 @@ export default function friends(state = initialState, action) {
         friendsById: [
           ...state.friendsById,
           {
-            name: action.name
+            name: action.name,
+            gender:action.gender
           }
         ],
       };
@@ -42,7 +46,14 @@ export default function friends(state = initialState, action) {
         ...state,
         friendsById: friends
       };
-
+    case types.Gender_Friend:
+      let prevFriends = [...state.friendsById];
+      let changeFriend = prevFriends.find((item, index) => index === action.id);
+      changeFriend.gender = action.gender;
+      return {
+           ...state,
+        friendsById: prevFriends
+      };
     default:
       return state;
   }

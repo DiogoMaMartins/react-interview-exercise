@@ -23,6 +23,11 @@
   color: #5C75B0;
 }
 
+:local(.selectGender) {
+  width:50;
+  height:50;
+};
+
 button:focus {
   outline: 0 !important;
 }
